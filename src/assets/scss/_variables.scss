@@ -1,0 +1,35 @@
+// Add percentage of white to a color
+@function tint($color, $percent){
+  @return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+@function shade($color, $percent){
+  @return mix(black, $color, $percent);
+}
+
+// Corlors
+
+$danger: #f50;
+$danger-light: tint($danger, 80%);
+
+$success: #87d068;
+$success-light: tint($success, 40%);
+
+$warning: #fa0;
+$warning-light: tint($warning, 80%);
+
+$primary: #2db7f5;
+$primary-click: shade($primary, 5%);
+$primary-hover: tint($primary, 20%);
+$primary-light: tint($primary, 80%);
+$primary-hover-bg: tint($primary, 90%);
+
+$gray: #666;
+$gray-title: #404040;
+$gray-help: #999;
+$gray-disabled: #ccc;
+$gray-border: #d9d9d9;
+$gray-split: #e9e9e9;
+$gray-disabled-bg: #f4f4f4;
+$gray-bg: #fbfbfb;

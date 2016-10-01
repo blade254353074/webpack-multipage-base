@@ -1,0 +1,63 @@
+{
+  "name": "webpack-multipage",
+  "version": "1.0.0",
+  "description": "webpack multipage (sever rendering) demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dashboard -c magenta -- node tools/webpack/server.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "multipage",
+    "build"
+  ],
+  "author": "SebastianBlade",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.5.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-optimize": "^1.0.1",
+    "chunk-manifest-webpack-plugin": "^0.1.0",
+    "css-loader": "^0.25.0",
+    "exports-loader": "^0.6.3",
+    "expose-loader": "^0.7.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "fs-extra": "^0.30.0",
+    "glob": "^7.1.0",
+    "happypack": "^2.2.1",
+    "html-webpack-plugin": "^2.22.0",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-webpack-plugin": "^1.1.0",
+    "node-sass": "^3.10.0",
+    "nyan-progress-webpack-plugin": "^1.1.4",
+    "open-browser-webpack-plugin": "0.0.2",
+    "postcss-loader": "^0.13.0",
+    "precss": "^1.4.0",
+    "react-addons-perf": "^15.3.2",
+    "react-hot-loader": "^3.0.0-beta.5",
+    "react-router": "^2.8.1",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^4.0.2",
+    "standard": "^8.2.0",
+    "standard-loader": "^5.0.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dashboard": "^0.2.0",
+    "webpack-dev-server": "^1.16.1",
+    "webpack-manifest-plugin": "^1.0.1",
+    "webpack-md5-hash": "0.0.5"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.16.0",
+    "react": "^15.3.2",
+    "zepto": "^1.2.0"
+  }
+}
