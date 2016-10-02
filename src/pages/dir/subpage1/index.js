@@ -1,6 +1,8 @@
 import $ from 'zepto'
 
-console.log('subpage1')
-function subpage1 () {
+(function () {
+  console.log('subpage1')
+  $('body').append('$ is ' + $)
+
   return 'subpage1 func'
-}
+}())

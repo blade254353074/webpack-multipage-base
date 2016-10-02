@@ -18,6 +18,7 @@ const urls = {
   components: path.resolve(src, 'components'),
   pages: path.resolve(src, 'pages'),
   /*  */
+  zepto: path.resolve('node_modules/zepto/dist/zepto.js') // "main": "dist/zepto.js",
 }
 
 module.exports = urls

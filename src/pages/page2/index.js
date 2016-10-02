@@ -1,6 +1,7 @@
-import $ from 'zepto'
+(function () {
+  console.log('page2')
 
-console.log('page2')
-function page2 () {
+  $('body').append('$ is ' + $)
+
   return 'page2 func'
-}
+}())

@@ -1,6 +1,6 @@
-import attachFastClick from 'fastclick'
+import FastClick from 'fastclick'
 
-attachFastClick(document.body)
+FastClick.attach(document.body)
 
 console.log('init')
 function init () {

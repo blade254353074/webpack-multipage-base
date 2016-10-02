@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
 const urls = require('../urls.js') 
-const config = require('./webpack.config.dev.js')
+const config = require('./config.dev.js')
 const getIPAddress = require('../getIPAddress.js')
 
 const ip = getIPAddress()

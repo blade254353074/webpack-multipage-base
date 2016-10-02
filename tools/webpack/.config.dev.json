@@ -1,0 +1,229 @@
+{
+  "cache": true,
+  "debug": true,
+  "devtool": "cheap-module-eval-source-map",
+  "entry": {
+    "vendor": [
+      "webpack-dev-server/client?http://192.168.0.100:8080",
+      "webpack/hot/dev-server",
+      "babel-polyfill",
+      "fastclick",
+      "./src/components/init"
+    ],
+    "dir/subpage1": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/dir/subpage1/index.js",
+    "dir/subpage2": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/dir/subpage2/index.js",
+    "index": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/index/index.js",
+    "page1": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/page1/index.js",
+    "page2": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/page2/index.js"
+  },
+  "output": {
+    "path": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/build",
+    "publicPath": "/",
+    "filename": "assets/js/[name].js",
+    "chunkFilename": "assets/js/chunk.[name].js"
+  },
+  "resolve": {
+    "root": [
+      "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/node_modules"
+    ],
+    "alias": {
+      "components": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/components",
+      "assets": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/assets"
+    },
+    "extensions": [
+      "",
+      ".js",
+      ".jsx",
+      ".css",
+      ".scss",
+      ".gif",
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".html"
+    ]
+  },
+  "resolveLoader": {
+    "root": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/node_modules"
+  },
+  "module": {
+    "preLoaders": [
+      {
+        "test": {},
+        "loader": "standard",
+        "exclude": {}
+      }
+    ],
+    "loaders": [
+      {
+        "test": {},
+        "exclude": {},
+        "loader": "babel",
+        "query": {
+          "cacheDirectory": true
+        }
+      },
+      {
+        "test": {},
+        "loaders": [
+          "style",
+          "css",
+          "postcss",
+          "sass?sourceMap"
+        ]
+      },
+      {
+        "test": {},
+        "loaders": [
+          "style",
+          "css",
+          "postcss?sourceMap"
+        ]
+      },
+      {
+        "test": {},
+        "loader": "json"
+      },
+      {
+        "test": {},
+        "loader": "url?limit=1000&name=assets/imgs/[name].[ext]"
+      },
+      {
+        "test": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/node_modules/zepto/dist/zepto.js",
+        "loader": "exports?Zepto!script"
+      }
+    ]
+  },
+  "plugins": [
+    {
+      "port": 9838,
+      "handler": null
+    },
+    {
+      "definitions": {
+        "$": "zepto"
+      }
+    },
+    {
+      "chunkNames": "vendor",
+      "minChunks": null,
+      "ident": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/node_modules/webpack/lib/optimize/CommonsChunkPlugin.js0"
+    },
+    {},
+    {},
+    {
+      "url": "http://localhost:8080/"
+    },
+    {
+      "options": {
+        "template": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/dir/subpage1/index.html",
+        "filename": "dir/subpage1.html",
+        "hash": false,
+        "inject": true,
+        "compile": true,
+        "favicon": false,
+        "minify": false,
+        "cache": true,
+        "showErrors": true,
+        "chunks": [
+          "vendor",
+          "dir/subpage1"
+        ],
+        "excludeChunks": [],
+        "title": "Webpack App",
+        "xhtml": false,
+        "key": "dir/subpage1"
+      }
+    },
+    {
+      "options": {
+        "template": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/dir/subpage2/index.html",
+        "filename": "dir/subpage2.html",
+        "hash": false,
+        "inject": true,
+        "compile": true,
+        "favicon": false,
+        "minify": false,
+        "cache": true,
+        "showErrors": true,
+        "chunks": [
+          "vendor",
+          "dir/subpage2"
+        ],
+        "excludeChunks": [],
+        "title": "Webpack App",
+        "xhtml": false,
+        "key": "dir/subpage2"
+      }
+    },
+    {
+      "options": {
+        "template": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/index/index.html",
+        "filename": "index.html",
+        "hash": false,
+        "inject": true,
+        "compile": true,
+        "favicon": false,
+        "minify": false,
+        "cache": true,
+        "showErrors": true,
+        "chunks": [
+          "vendor",
+          "index"
+        ],
+        "excludeChunks": [],
+        "title": "Webpack App",
+        "xhtml": false,
+        "key": "index"
+      }
+    },
+    {
+      "options": {
+        "template": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/page1/index.html",
+        "filename": "page1.html",
+        "hash": false,
+        "inject": true,
+        "compile": true,
+        "favicon": false,
+        "minify": false,
+        "cache": true,
+        "showErrors": true,
+        "chunks": [
+          "vendor",
+          "page1"
+        ],
+        "excludeChunks": [],
+        "title": "Webpack App",
+        "xhtml": false,
+        "key": "page1"
+      }
+    },
+    {
+      "options": {
+        "template": "/Users/SebastianBlade/Documents/Workspace/Web/git/webpack-multipage-base/src/pages/page2/index.html",
+        "filename": "page2.html",
+        "hash": false,
+        "inject": true,
+        "compile": true,
+        "favicon": false,
+        "minify": false,
+        "cache": true,
+        "showErrors": true,
+        "chunks": [
+          "vendor",
+          "page2"
+        ],
+        "excludeChunks": [],
+        "title": "Webpack App",
+        "xhtml": false,
+        "key": "page2"
+      }
+    }
+  ],
+  "standard": {
+    "globals": [
+      "$",
+      "Zepto"
+    ]
+  }
+}

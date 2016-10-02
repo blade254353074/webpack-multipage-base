@@ -1,6 +1,6 @@
-import $ from 'zepto'
+(function index () {
+  console.log('index')
+  $('body').append('$ is ' + $)
 
-console.log('index')
-function index () {
   return 'index func'
-}
+}())
