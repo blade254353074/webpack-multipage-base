@@ -26,9 +26,11 @@ const config = {
   // devtool: 'source-map',
   devtool: 'cheap-module-eval-source-map', // original source (lines only), no production supported
   entry: {
-    vendor: [
+    dev: [
       `webpack-dev-server/client?http://${ip}:${port}`, // WebpackDevServer host and port
       'webpack/hot/dev-server', // 'only' prevents reload on syntax errors
+    ],
+    vendor: [
       'babel-polyfill/dist/polyfill', // use builded js to boost build process
       'zepto',
       'fastclick',
@@ -69,12 +71,12 @@ const config = {
       }
     }, {
       test: /\.scss$/i,
-      loader: ExtractTextPlugin.extract('style', ['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])
-      // loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap']
+      // loader: ExtractTextPlugin.extract('style', ['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])
+      loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap']
     }, {
       test: /\.css$/i,
-      loader: ExtractTextPlugin.extract('style', ['css?sourceMap', 'postcss?sourceMap'])
-      // loaders: ['style', 'css?sourceMap', 'postcss?sourceMap']
+      // loader: ExtractTextPlugin.extract('style', ['css?sourceMap', 'postcss?sourceMap'])
+      loaders: ['style', 'css?sourceMap', 'postcss?sourceMap']
     }, {
       test: /\.json$/i,
       loader: 'json'
@@ -99,7 +101,7 @@ const config = {
     new webpack.ProvidePlugin({
       $: 'zepto'
     }),
-    new ExtractTextPlugin('assets/css/[name].[id].css'),
+    // new ExtractTextPlugin('assets/css/[name].[id].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity
@@ -117,6 +119,7 @@ const config = {
 // 添加所有页面配置
 Object.assign(config.entry, pagesConfig.entry)
 config.plugins.push(...pagesConfig.htmls.map(cfg => new HtmlWebpackPlugin(cfg)))
+config.entry.dev.push(...pagesConfig.htmls.map(cfg => cfg.template))
 fs.writeFileSync(`${urls.temp}/config.dev.json`, JSON.stringify(config, null, 2), 'utf8')
 
 module.exports = config

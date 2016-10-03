@@ -3,6 +3,6 @@ import './style'
 (function index () {
   console.log('index')
   $('body').append('$ is ' + $)
-  $('li').append(' 666')
+  $('li').append(' LI')
   return 'index func'
 }())

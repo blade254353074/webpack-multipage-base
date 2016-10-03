@@ -2,8 +2,7 @@ const path = require('path')
 const fs = require('fs-extra')
 const glob = require('glob')
 const urls = require('../urls')
-
-
+const NODE_ENV = process.env.NODE_ENV
 
 function fileExist (path) {
   try {
@@ -43,8 +42,9 @@ function constructEntries (htmlFiles) {
 function constructEntryObject (pagesAttr) {
   const entry = {}
   pagesAttr.map(page => {
+    entry[page.key] = page.js
     // 'dir/subpage1': [ jspath, htmlpath ]
-    entry[page.key] = [page.js, page.html]
+    // entry[page.key] = [page.js, page.html]
   })
 
   return entry
@@ -52,12 +52,14 @@ function constructEntryObject (pagesAttr) {
 
 function constructHtmlPluginsConfigArray (pagesAttr) {
   return pagesAttr.map(page => {
+    const chunks = NODE_ENV !== 'production' ? ['dev', 'vendor'] : ['vendor']
+    const inject = NODE_ENV !== 'production' ? 'head' : true
     const config = {
       key: page.key,
       filename: `${page.key}.html`,
       template: page.html,
-      inject: true,
-      chunks: ['vendor']
+      inject,
+      chunks
     }
 
     if (page.js) {
