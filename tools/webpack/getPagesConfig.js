@@ -30,7 +30,7 @@ function constructEntries (htmlFiles) {
     /*
       page {
         key: 'dir/subpage1',
-        html: '/path/to/dir/subpage1/index.html',
+        html: '/absolute/path/to/dir/subpage1/index.html',
         js: './src/pages/dir/subpage1/index.js' // optional
       }
     */
@@ -43,7 +43,8 @@ function constructEntries (htmlFiles) {
 function constructEntryObject (pagesAttr) {
   const entry = {}
   pagesAttr.map(page => {
-    entry[page.key] = page.js
+    // 'dir/subpage1': [ jspath, htmlpath ]
+    entry[page.key] = [page.js, page.html]
   })
 
   return entry

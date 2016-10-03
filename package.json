@@ -4,8 +4,8 @@
   "description": "webpack multipage (sever rendering) demo",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dashboard -- node tools/webpack/dev.server.js",
-    "start.dev": "node tools/webpack/dev.server.js",
+    "start": "NODE_ENV=development webpack-dashboard -- node tools/webpack/dev.server.js",
+    "start.dev": "NODE_ENV=development node tools/webpack/dev.server.js",
     "stat": "webpack --profile --json > stats.json --config ./tools/webpack/webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
