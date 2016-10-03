@@ -5,7 +5,7 @@ const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-// 在 react-hot-loader v3.0.0-beta.2 下，加上 happypack 会使 hot-reload 失效
+// 在 react-hot-loader v3.0.0-beta.2 下，加上 happypack 会使 react-hot-reload 失效
 const HappyPack = require('happypack')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
@@ -68,12 +68,12 @@ const config = {
       }
     }, {
       test: /\.scss$/i,
-      loader: ExtractTextPlugin.extract('style', ['css', 'postcss', 'sass?sourceMap'])
-      // loaders: ['style', 'css', 'postcss', 'sass?sourceMap']
+      // loader: ExtractTextPlugin.extract('style', ['css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'])
+      loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap']
     }, {
       test: /\.css$/i,
-      loader: ExtractTextPlugin.extract('style', ['css', 'postcss?sourceMap'])
-      // loaders: ['style', 'css', 'postcss?sourceMap']
+      // loader: ExtractTextPlugin.extract('style', ['css?sourceMap', 'postcss?sourceMap'])
+      loaders: ['style', 'css?sourceMap', 'postcss?sourceMap']
     }, {
       test: /\.json$/i,
       loader: 'json'
@@ -98,7 +98,7 @@ const config = {
     new webpack.ProvidePlugin({
       $: 'zepto'
     }),
-    new ExtractTextPlugin('assets/css/[name].[id].css'),
+    // new ExtractTextPlugin('assets/css/[name].[id].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity
