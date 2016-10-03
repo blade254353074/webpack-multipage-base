@@ -23,13 +23,13 @@ const pagesConfig = getPagesConfig()
 const config = {
   cache: true,
   debug: true,
-  devtool: 'source-map',
-  // devtool: 'cheap-module-eval-source-map', // original source (lines only), no production supported
+  // devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map', // original source (lines only), no production supported
   entry: {
     vendor: [
       `webpack-dev-server/client?http://${ip}:${port}`, // WebpackDevServer host and port
       'webpack/hot/dev-server', // 'only' prevents reload on syntax errors
-      'babel-polyfill',
+      'babel-polyfill/dist/polyfill',
       'zepto',
       'fastclick',
       './src/components/init' // 页面初始化
@@ -54,6 +54,7 @@ const config = {
     root: urls.node_modules
   },
   module: {
+    noParse: [/(babel-polyfill|bower_components)/],
     preLoaders: [{
       test: /\.jsx?$/,
       loader: 'standard',
