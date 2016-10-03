@@ -1,4 +1,5 @@
 import FastClick from 'fastclick'
+import 'assets/scss/base'
 
 FastClick.attach(document.body)
 

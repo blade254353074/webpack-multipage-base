@@ -1,5 +1,5 @@
 {
-  "name": "webpack-multipage",
+  "name": "webpack-multipage-base",
   "version": "1.0.0",
   "description": "webpack multipage (sever rendering) demo",
   "main": "index.js",
@@ -21,7 +21,6 @@
     "fastclick": "^1.0.6",
     "lodash": "^4.16.2",
     "react": "^15.3.2",
-    "webpack-zepto": "0.0.1",
     "zepto": "^1.2.0"
   },
   "devDependencies": {
@@ -42,6 +41,8 @@
     "file-loader": "^0.9.0",
     "fs-extra": "^0.30.0",
     "glob": "^7.1.0",
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.4.0",
     "happypack": "^2.2.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",

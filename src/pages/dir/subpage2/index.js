@@ -1,4 +1,5 @@
 import $ from 'zepto'
+import './style'
 
 console.log('subpage2')
 

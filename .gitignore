@@ -43,5 +43,5 @@ jspm_packages
 # Output of 'npm pack'
 *.tgz
 
-# happypack
-.happypack
+# temp & happypack
+.temp

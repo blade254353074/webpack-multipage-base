@@ -62,20 +62,21 @@ function constructHtmlPluginsConfigArray (pagesAttr) {
     if (page.js) {
       config.chunks.push(page.key)
     }
-
-    // {
-    //   filename: 'dir/subpage.html',
-    //   template: '/absolute/path/to/dir/subpage/index.html',
-    //   inject: true,
-    //   chunks: ['vendor', 'dir/subpage']
-    // }
+    /*
+      config {
+        filename: 'dir/subpage.html',
+        template: '/absolute/path/to/dir/subpage/index.html',
+        inject: true,
+        chunks: ['vendor', 'dir/subpage']
+      }
+    */
     return config
   })
 }
 
 function getPagesConfig () {
   try {
-    const htmlFiles = glob.sync(`${urls.pages}/**/index.html`)
+    const htmlFiles = glob.sync(`${urls.pages}/**/index.+(html|ejs|hbs)`)
     const pagesAttr = constructEntries(htmlFiles)
     const entry = constructEntryObject(pagesAttr) // Object
     const htmls = constructHtmlPluginsConfigArray(pagesAttr) // Array
