@@ -1,0 +1,14 @@
+a {
+  color: $primary;
+  text-decoration: none;
+  &:hover {
+    color: $primary-hover;
+  }
+  &:active {
+    color: $primary-click;
+  }
+}
+
+.text-right {
+  text-align: right;
+}

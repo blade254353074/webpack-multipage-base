@@ -1,8 +1,9 @@
+console.log('ES6 Module load compoents/movies.js')
+
 import './style'
-import doubanJSON from './demo'
+import movies from 'components/movies'
+import moviesJSON from 'assets/api/movies.json'
 
-$(function () {
-  console.log('index')
-
-  $('#J_Result').text(JSON.stringify(doubanJSON, null, 2))
+$(() => {
+  $('#J_Result').html(movies(moviesJSON))
 })

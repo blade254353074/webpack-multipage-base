@@ -1,12 +1,14 @@
-$(function () {
-  const ajax = $.ajax({
-    url: '/',
-    type: 'GET',
-    dataType: 'html'
-  })
+console.log('CommonJs require.ensure compoents/movies.js')
 
-  Promise.resolve(ajax)
-    .then(xhr => {
-      console.log(xhr)
+require.ensure(
+  ['components/movies', 'assets/api/movies.json'],
+  require => {
+    console.log('Callback executed!')
+    const movies = require('components/movies').default // esModule
+    const moviesJSON = require('assets/api/movies.json')
+
+    $(() => {
+      $('#J_Result').html(movies(moviesJSON))
     })
-})
+  }
+)

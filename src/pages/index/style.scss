@@ -2,8 +2,6 @@
 @import "~assets/scss/variables";
 @import "~assets/scss/mixin";
 
-h1::after {
-  content: ' ;)';
-  padding-left: 16px;
-  color: $primary;
+h1 {
+  color: $gray-title;
 }

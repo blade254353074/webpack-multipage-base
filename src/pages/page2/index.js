@@ -1,7 +1,13 @@
-(function () {
-  console.log('page2')
+console.log('AMD require compoents/movies.js')
 
-  $('body').append('$ is ' + $)
+require(
+  ['components/movies', 'assets/api/movies.json'],
+  (movies, moviesJSON) => {
+    console.log('Callback executed!')
+    movies = movies.default // esModule
 
-  return 'page2 func'
-}())
+    $(() => {
+      $('#J_Result').html(movies(moviesJSON))
+    })
+  }
+)

@@ -2,23 +2,35 @@
 <html lang="zh-CN">
 
 <head>
-{{>
-  ../templates/meta
-  partial=
-  "  <style>
-    html {
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  </style>"
-}}
-  <title>page2</title>
+  {{> ../templates/meta}}
+  <title>Page2</title>
 </head>
 
 <body>
-  <div>page2</div>
-  {{> ../templates/links}}
+  <div class="container">
+    <h1>Page2</h1>
+    <p>AMD: require</p>
+    <p>
+      When `require` called, all `dependencies` are loaded and the `callback` is called with the exports of the loaded `dependencies`.
+      <br>
+      Note: AMD `require` loads and evaluate the modules. In webpack modules are evaluated left to right.
+    </p>
+    {{> ../templates/links}}
+    <hr>
+    <article>
+      <div class="console">
+        <h4>Console</h4>
+        <p>
+          AMD require compoents/movies.js<br>
+          compoents/movies.js loaded!<br>
+          Callback executed!
+        </p>
+      </div>
+      <p>从 Console 中可以看出 AMD 的 require 会在 callback 执行前读取并执行模块</p>
+    </article>
+    <hr>
+    <div id="J_Result"></div>
+  </div>
 </body>
 
 </html>

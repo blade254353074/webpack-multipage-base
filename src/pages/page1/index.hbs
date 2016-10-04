@@ -3,12 +3,45 @@
 
 <head>
   {{> ../templates/meta}}
-  <title>page1</title>
+  <title>Page1</title>
 </head>
 
 <body>
-  <div>page1</div>
-  {{> ../templates/links}}
+  <div class="container">
+    <h1>Page1</h1>
+    <p>CommonJs: require.ensure</p>
+    <p>
+      The `require.ensure` method ensures that every dependency in `dependencies` can be synchronously required when calling the `callback`. `callback` is called with the `require` function as parameter.
+      <br>
+      Note: `require.ensure` only loads the modules, it doesn’t evaluate them.
+    </p>
+    {{> ../templates/links}}
+    <hr>
+    <div>
+      <h5>Console</h5>
+      <p></p>
+      <p>Get movies function!</p>
+      <p></p>
+    </div>
+    <article>
+      <div class="console">
+        <h4>Console</h4>
+        <p>
+          CommonJs require.ensure compoents/movies.js<br>
+          Callback executed!<br>
+          compoents/movies.js loaded!
+        </p>
+      </div>
+      <p>
+        从 Console 中可以看出：<br>
+        CommonJs 的 require.ensure 会先读取模块（并不执行，是根据 ensure 来确认依赖的），<br>
+        在 Callback 中执行 require(module) 后，模块才执行。<br>
+        即体现出，CommonJs 的同步性：没有网络 IO 延迟（实际上已经跟随入口文件一起加载了），require(module) 即执行模块。
+      </p>
+    </article>
+    <hr>
+    <div id="J_Result"></div>
+  </div>
 </body>
 
 </html>

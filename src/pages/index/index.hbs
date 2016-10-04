@@ -15,12 +15,25 @@
       <li>html template</li>
     </ol>
     <h2>Example</h2>
-    <a href="/">ES6 Modules (Webpack 1.x not support, transformd to CommonJs' require)</a>
-    <a href="page1.html">CommonJs: require.ensure</a>
-    <a href="page1.html">AMD: require</a>
+    <ul>
+      <li><a href="/">ES6 Modules (Webpack 1.x not support, transformd to CommonJs' require)</a></li>
+      <li><a href="page1.html">CommonJs: require.ensure</a></li>
+      <li><a href="page2.html">AMD: require</a></li>
+    </ul>
     {{> ../templates/links}}
     <hr>
-    <pre id="J_Result"></pre>
+    <article>
+      <div class="console">
+        <h4>Console</h4>
+        <p>
+          compoents/movies.js loaded!<br>
+          ES6 Module load compoents/movies.js
+        </p>
+      </div>
+      <p>从 Console 中可以看出</p>
+    </article>
+    <hr>
+    <div id="J_Result"></div>
   </div>
 </body>
 

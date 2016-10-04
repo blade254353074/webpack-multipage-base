@@ -13,14 +13,19 @@ function fileExist (path) {
   }
 }
 
-function constructEntries (htmlFiles) {
+function constructEntries (templateFiles) {
   const pagesAttr = []
-  htmlFiles.map(url => {
-    const dir = path.dirname(url)
+  templateFiles.map(template => {
+    const dir = path.dirname(template)
     // key `dir/subpage1` or `poage1`
-    const key = path.dirname(path.relative(urls.pages, url))
+    const key = path.dirname(path.relative(urls.pages, template))
+    const templateKey = `[template]${encodeURIComponent(key)}` // 让 template 模板可追踪
     const jsPath = path.resolve(dir, 'index.js')
-    const page = { key, html: url }
+    const page = {
+      key,
+      templateKey,
+      template
+    }
 
     if (fileExist(jsPath)) {
       page.js = jsPath || './' + path.relative(urls.project, jsPath)
@@ -29,7 +34,8 @@ function constructEntries (htmlFiles) {
     /*
       page {
         key: 'dir/subpage1',
-        html: '/absolute/path/to/dir/subpage1/index.html',
+        templateKey: '<template>-dir/subpage1',
+        template: '/absolute/path/to/dir/subpage1/index.html',
         js: './src/pages/dir/subpage1/index.js' // optional
       }
     */
@@ -40,10 +46,15 @@ function constructEntries (htmlFiles) {
 }
 
 function constructEntryObject (pagesAttr) {
-  const entry = {}
+  let entry = {}
   pagesAttr.map(page => {
-    entry[page.key] = page.js
+    Object.assign(entry, {
+      [page.key]: page.js,
+      [page.templateKey]: page.template
+    })
+    // entry[page.key] = page.js
     // 'dir/subpage1': [ jspath, htmlpath ]
+    // 为了让每个页面都跟随源 html 进行热更新，入口要加入源文件路径
     // entry[page.key] = [page.js, page.html]
   })
 
@@ -52,14 +63,23 @@ function constructEntryObject (pagesAttr) {
 
 function constructHtmlPluginsConfigArray (pagesAttr) {
   return pagesAttr.map(page => {
-    const chunks = NODE_ENV !== 'production' ? ['dev', 'vendor'] : ['vendor']
-    const inject = NODE_ENV !== 'production' ? 'head' : true
-    const config = {
-      key: page.key,
+    let chunks
+    let inject
+    let config
+    if (NODE_ENV !== 'production') {
+      inject = 'head' // 注入到头部避免样式震动
+      chunks = ['[development]', 'vendor', page.templateKey]
+    } else { // 生产环境
+      inject = true
+      chunks = ['vendor']
+    }
+    config = {
+      _key: page.key,
+      _templateKey: page.templateKey,
       filename: `${page.key}.html`,
-      template: page.html,
-      inject,
-      chunks
+      template: page.template,
+      chunks,
+      inject
     }
 
     if (page.js) {
@@ -67,10 +87,12 @@ function constructHtmlPluginsConfigArray (pagesAttr) {
     }
     /*
       config {
-        filename: 'dir/subpage.html',
-        template: '/absolute/path/to/dir/subpage/index.html',
+        _key: 'dir/page',
+        _templateKey: '<template>-dir/page',
+        filename: 'dir/page.html',
+        template: '/absolute/path/to/dir/page/index.html',
         inject: true,
-        chunks: ['vendor', 'dir/subpage']
+        chunks: ['vendor', 'dir/page']
       }
     */
     return config
@@ -79,8 +101,8 @@ function constructHtmlPluginsConfigArray (pagesAttr) {
 
 function getPagesConfig () {
   try {
-    const htmlFiles = glob.sync(`${urls.pages}/**/index.+(html|ejs|hbs)`)
-    const pagesAttr = constructEntries(htmlFiles)
+    const templateFiles = glob.sync(`${urls.pages}/**/index.+(html|ejs|hbs)`)
+    const pagesAttr = constructEntries(templateFiles)
     const entry = constructEntryObject(pagesAttr) // Object
     const htmls = constructHtmlPluginsConfigArray(pagesAttr) // Array
 

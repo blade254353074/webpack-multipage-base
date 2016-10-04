@@ -28,7 +28,7 @@ const config = {
   // 用 eval 可以大幅提高开发中构建效率，但 map 存在 js 文件中，会影响对文件大小的判断
   // devtool: 'cheap-module-eval-source-map', // original source (lines only), no production supported
   entry: {
-    dev: [
+    '[development]': [
       `webpack-dev-server/client?http://${ip}:${port}`, // WebpackDevServer host and port
       'webpack/hot/dev-server', // 'only' prevents reload on syntax errors
     ],
@@ -120,8 +120,13 @@ const config = {
 // 添加所有页面配置
 Object.assign(config.entry, pagesConfig.entry)
 config.plugins.push(...pagesConfig.htmls.map(cfg => new HtmlWebpackPlugin(cfg)))
-config.entry.dev.push(...pagesConfig.htmls.map(cfg => cfg.template))
-// write config.dev.json to .temp dir 
+// config.entry.dev.push(...pagesConfig.htmls.map(cfg => cfg.template))
+// config.plugins.push((new webpack.optimize.CommonsChunkPlugin({
+//   name: 'commons',
+//   filename: "commons.js",
+//   chunks: ['vendor'].concat(pagesConfig.htmls.map(cfg => cfg.key))
+// })))
+// write config.dev.json to .temp dir
 fs.writeFileSync(`${urls.temp}/config.dev.json`, JSON.stringify(config, null, 2), 'utf8')
 
 module.exports = config
