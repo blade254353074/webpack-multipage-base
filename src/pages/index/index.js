@@ -1,8 +1,8 @@
 import './style'
+import doubanJSON from './demo'
 
-(function index () {
+$(function () {
   console.log('index')
-  $('body').append('$ is ' + $)
-  $('li').append(' LI')
-  return 'index func'
-}())
+
+  $('#J_Result').text(JSON.stringify(doubanJSON, null, 2))
+})

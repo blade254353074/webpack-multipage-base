@@ -24,7 +24,9 @@ const config = {
   cache: true,
   debug: true,
   // devtool: 'source-map',
-  devtool: 'cheap-module-eval-source-map', // original source (lines only), no production supported
+  devtool: 'cheap-module-source-map',
+  // 用 eval 可以大幅提高开发中构建效率，但 map 存在 js 文件中，会影响对文件大小的判断
+  // devtool: 'cheap-module-eval-source-map', // original source (lines only), no production supported
   entry: {
     dev: [
       `webpack-dev-server/client?http://${ip}:${port}`, // WebpackDevServer host and port
@@ -50,7 +52,7 @@ const config = {
       components: urls.components,
       assets: urls.assets
     },
-    extensions: ['', '.js', '.jsx', '.css', '.scss', '.gif', '.png', '.jpg', '.jpeg', '.html']
+    extensions: ['', '.js', '.jsx', '.css', '.scss', '.gif', '.png', '.jpg', '.jpeg', '.json', '.html']
   },
   resolveLoader: {
     root: urls.node_modules
@@ -111,8 +113,7 @@ const config = {
     new OpenBrowserPlugin({ url: `http://localhost:${port}/` })
   ],
   standard: {
-    globals: ['$', 'Zepto'],
-    // ecmaFeatures: { jsx: true, modules: true }
+    globals: ['$', 'Zepto']
   }
 }
 
@@ -120,6 +121,7 @@ const config = {
 Object.assign(config.entry, pagesConfig.entry)
 config.plugins.push(...pagesConfig.htmls.map(cfg => new HtmlWebpackPlugin(cfg)))
 config.entry.dev.push(...pagesConfig.htmls.map(cfg => cfg.template))
+// write config.dev.json to .temp dir 
 fs.writeFileSync(`${urls.temp}/config.dev.json`, JSON.stringify(config, null, 2), 'utf8')
 
 module.exports = config
