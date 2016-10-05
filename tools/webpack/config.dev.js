@@ -31,6 +31,7 @@ const config = {
     '[development]': [
       `webpack-dev-server/client?http://${ip}:${port}`, // WebpackDevServer host and port
       'webpack/hot/dev-server', // 'only' prevents reload on syntax errors
+      'handlebars/dist/handlebars.runtime'
     ],
     vendor: [
       'babel-polyfill/dist/polyfill', // use builded js to boost build process
@@ -121,11 +122,12 @@ const config = {
 Object.assign(config.entry, pagesConfig.entry)
 config.plugins.push(...pagesConfig.htmls.map(cfg => new HtmlWebpackPlugin(cfg)))
 // config.entry.dev.push(...pagesConfig.htmls.map(cfg => cfg.template))
-// config.plugins.push((new webpack.optimize.CommonsChunkPlugin({
-//   name: 'commons',
-//   filename: "commons.js",
-//   chunks: ['vendor'].concat(pagesConfig.htmls.map(cfg => cfg.key))
-// })))
+config.plugins.push(
+  (new webpack.optimize.CommonsChunkPlugin({
+    name: '[development]',
+    chunks: ['[development]'].concat(pagesConfig.htmls.map(cfg => cfg._templateKey))
+  }))
+)
 // write config.dev.json to .temp dir
 fs.writeFileSync(`${urls.temp}/config.dev.json`, JSON.stringify(config, null, 2), 'utf8')
 

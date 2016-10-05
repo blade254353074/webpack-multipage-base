@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-const urls = require('../urls.js') 
+const urls = require('../urls.js')
 const config = require('./config.dev.js')
 const getIPAddress = require('../getIPAddress.js')
 
@@ -11,6 +11,13 @@ const port = 8080
 const compiler = webpack(config)
 
 const server = new WebpackDevServer(compiler, {
+  proxy: {
+    '/v2': {
+      target: 'http://api.douban.com/',
+      secure: false,
+      changeOrigin: true
+    }
+  },
   compress: true,
   hot: true,
   noInfo: false,

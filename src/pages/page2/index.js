@@ -8,6 +8,20 @@ require(
 
     $(() => {
       $('#J_Result').html(movies(moviesJSON))
+
+      $.ajax({
+        url: '/v2/movie/in_theaters?count=10',
+        dataType: 'json'
+      })
+        .done(res => {
+          console.log(res)
+        })
+        .fail(err => {
+          console.log(err)
+        })
+        .always(() => {
+          console.log('complete')
+        })
     })
   }
 )
