@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="renderer" content="webkit">
-  <title>page1</title>
-</head>
+  
+  <title>Page1</title>
+<link href="/assets/css/vendor.0.css" rel="stylesheet"></head>
+
 <body>
-  <div>page1</div>
-  <section>
-    <a href="/">index</a>
-    <a href="/page1.html">page1</a>
-    <a href="/page2.html">page2</a>
-    <a href="/dir/subpage1.html">dir/subpage1</a>
-    <a href="/dir/subpage2.html">dir/subpage2</a>
-  </section>
-<script type="text/javascript" src="/assets/js/vendor.js"></script><script type="text/javascript" src="/assets/js/page1.js"></script></body>
+  <div class="container">
+    <h1>Page1</h1>
+    <p>CommonJs: require.ensure</p>
+    <p>
+      The `require.ensure` method ensures that every dependency in `dependencies` can be synchronously required when calling the `callback`. `callback` is called with the `require` function as parameter.
+      <br>
+      Note: `require.ensure` only loads the modules, it doesn’t evaluate them.
+    </p>
+    <nav>
+      <a href="/">index</a>
+      <a href="/page1.html">page1</a>
+      <a href="/page2.html">page2</a>
+      <a href="/dir/subpage1.html">dir/subpage1</a>
+      <a href="/dir/subpage2.html">dir/subpage2</a>
+    </nav>
+    <hr>
+    <article>
+      <div class="console">
+        <h4>Console</h4>
+        <p>
+          CommonJs require.ensure compoents/movies.js<br>
+          Callback executed!<br>
+          compoents/movies.js loaded!
+        </p>
+      </div>
+      <p>
+        从 Console 中可以看出：<br>
+        CommonJs 的 require.ensure 会先读取模块（并不执行，是根据 ensure 来确认依赖的），<br>
+        在 Callback 中执行 require(module) 后，模块才执行。<br>
+        即体现出，CommonJs 的同步性：没有网络 IO 延迟（实际上已经跟随入口文件一起加载了），require(module) 即执行模块。
+      </p>
+    </article>
+    <hr>
+    <div id="J_Result"></div>
+  </div>
+<script type="text/javascript" src="/assets/js/vendor.9979980c.min.js"></script><script type="text/javascript" src="/assets/js/page1.7b0cf00d.min.js"></script></body>
+
 </html>

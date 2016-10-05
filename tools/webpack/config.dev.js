@@ -101,9 +101,7 @@ const config = {
       loaders: ['babel'],
       tempDir: urls.temp
     }),
-    new webpack.ProvidePlugin({
-      $: 'zepto'
-    }),
+    new webpack.ProvidePlugin({ $: 'zepto' }),
     // new ExtractTextPlugin('assets/css/[name].[id].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

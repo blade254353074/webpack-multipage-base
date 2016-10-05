@@ -6,7 +6,10 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dashboard -- node tools/webpack/dev.server.js",
     "start.dev": "NODE_ENV=development node tools/webpack/dev.server.js",
-    "stat": "webpack --profile --json > stats.json --config ./tools/webpack/webpack.config.dev.js",
+    "prebuild": "rimraf ./build",
+    "build": "NODE_ENV=production webpack --config ./tools/webpack/config.prod.js --colors --profile",
+    "postbuild": "http-server ./build -p 8080 -o \"http://localhost:8080\" -P \"http://api.douban.com\"",
+    "stat": "NODE_ENV=production webpack --profile --config ./tools/webpack/webpack/config.prod.js --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -46,6 +49,7 @@
     "happypack": "^2.2.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",
+    "http-server": "^0.9.0",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-webpack-plugin": "^1.1.0",
     "json-loader": "^0.5.4",
