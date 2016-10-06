@@ -90,8 +90,8 @@ const config = {
       test: /\.hbs$/,
       loader: "handlebars"
     }, {
-      test: require.resolve(urls.zepto),
-      loader: 'exports?Zepto!script'
+      test: require.resolve('zepto'),
+      loader: 'exports?window.Zepto!script'
     }]
   },
   postcss: () => [autoprefixer],
