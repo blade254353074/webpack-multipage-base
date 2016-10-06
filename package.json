@@ -8,8 +8,8 @@
     "start.dev": "NODE_ENV=development node tools/webpack/dev.server.js",
     "prebuild": "rimraf ./build",
     "build": "NODE_ENV=production webpack --config ./tools/webpack/config.prod.js --colors --profile",
-    "postbuild": "http-server ./build -p 8080 -o \"http://localhost:8080\" -P \"http://api.douban.com\"",
-    "stat": "NODE_ENV=production webpack --profile --config ./tools/webpack/webpack/config.prod.js --json > stats.json",
+    "postbuild": "http-server ./build -p 8080",
+    "stat": "NODE_ENV=production webpack --profile --config ./tools/webpack/config.prod.js --json > ./tools/webpack/stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -22,7 +22,7 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "fastclick": "^1.0.6",
-    "lodash": "^4.16.2",
+    "lodash": "^4.16.3",
     "react": "^15.3.2",
     "zepto": "^1.2.0"
   },
@@ -51,7 +51,7 @@
     "html-webpack-plugin": "^2.22.0",
     "http-server": "^0.9.0",
     "imagemin-mozjpeg": "^6.0.0",
-    "imagemin-webpack-plugin": "^1.1.0",
+    "imagemin-webpack-plugin": "^1.2.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.10.0",
     "nyan-progress-webpack-plugin": "^1.1.4",
@@ -72,6 +72,7 @@
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^1.16.1",
     "webpack-manifest-plugin": "^1.0.1",
-    "webpack-md5-hash": "0.0.5"
+    "webpack-md5-hash": "0.0.5",
+    "webpack-visualizer-plugin": "^0.1.5"
   }
 }

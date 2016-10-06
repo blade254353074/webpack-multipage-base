@@ -10,6 +10,7 @@ const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
 const Md5Hash = require('webpack-md5-hash')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const HappyPack = require('happypack')
+const Visualizer = require('webpack-visualizer-plugin')
 
 /* Plugins */
 const autoprefixer = require('autoprefixer')
@@ -86,7 +87,6 @@ const config = {
         if (progress === 1) return '呦, 又在写 Bug 了?'
       }
     }),
-    new webpack.BannerPlugin(`Build by SebastianBlade, at ${(new Date()).toLocaleString()}`),
     new HappyPack({ loaders: ['babel'], tempDir: urls.temp }),
     new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': '"production"' }}),
     new webpack.ProvidePlugin({ $: 'zepto' }),
@@ -99,6 +99,7 @@ const config = {
       pngquant: { quality: '70-85' },
       plugins: [imageminMozjpeg({ quality: 90 })]
     }),
+    new webpack.BannerPlugin(`Build by SebastianBlade, at ${(new Date()).toLocaleString()}`),
     new ExtractTextPlugin('assets/css/[name].[id].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -116,6 +117,7 @@ const config = {
     //   filename: "chunk-manifest.json",
     //   manifestVariable: "webpackManifest"
     // })
+    new Visualizer({ filename: `../tools/webpack/statistics.html` })
   ],
   recordsPath: `${urls.temp}/.webpack-records.json`
 }

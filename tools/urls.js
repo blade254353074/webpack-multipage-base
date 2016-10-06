@@ -12,6 +12,7 @@ const urls = {
   src: src,
   build: path.resolve('build'),
   node_modules: path.resolve('node_modules'),
+  webpack: path.resolve('tools/webpack'),
   temp: path.resolve('tools/.temp'),
   /* resource urls */
   favicon: path.resolve(src, 'favicon'),
