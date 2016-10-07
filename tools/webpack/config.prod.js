@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const ManifestPlugin = require('webpack-manifest-plugin')
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
-const Md5Hash = require('webpack-md5-hash')
+const WebpackMd5Hash = require('webpack-md5-hash')
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 const HappyPack = require('happypack')
 const Visualizer = require('webpack-visualizer-plugin')
@@ -70,7 +70,7 @@ const config = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      loader: 'url?limit=1000&name=assets/imgs/[hash:8].[name].[ext]'
+      loader: 'url?limit=1000&name=assets/imgs/[name].[chunkhash:8].[ext]'
     }, {
       test: /\.hbs$/,
       loader: "handlebars"
@@ -100,7 +100,7 @@ const config = {
       plugins: [imageminMozjpeg({ quality: 90 })]
     }),
     new webpack.BannerPlugin(`Build by SebastianBlade, at ${(new Date()).toLocaleString()}`),
-    new ExtractTextPlugin('assets/css/[name].[id].css'),
+    new ExtractTextPlugin('assets/css/[name].[contenthash:8].min.css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity
@@ -110,7 +110,7 @@ const config = {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new Md5Hash(),
+    new WebpackMd5Hash(),
     new webpack.NamedModulesPlugin(),
     new ManifestPlugin(),
     // new ChunkManifestPlugin({
@@ -125,6 +125,6 @@ const config = {
 // 添加所有页面配置
 Object.assign(config.entry, pagesConfig.entry)
 config.plugins.push(...pagesConfig.htmls.map(cfg => new HtmlWebpackPlugin(cfg)))
-fs.writeFileSync(`${urls.temp}/config.dev.json`, JSON.stringify(config, null, 2), 'utf8')
+fs.writeFileSync(`${urls.temp}/config.prod.json`, JSON.stringify(config, null, 2), 'utf8')
 
 module.exports = config
