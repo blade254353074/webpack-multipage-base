@@ -1,5 +1,5 @@
 {
-  "plugins": ["lodash", "react-hot-loader/babel", "transform-class-properties"],
+  "plugins": ["lodash", "transform-class-properties"],
   "presets": ["es2015", "react"],
   "env": {
     "production": {
