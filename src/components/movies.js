@@ -40,6 +40,6 @@ function movies (movies) {
   `
 }
 
-console.log('compoents/movies.js loaded!')
+console.log('components/movies.js executed!')
 
 export default movies

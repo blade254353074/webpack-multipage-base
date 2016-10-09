@@ -5,10 +5,11 @@ require.ensure(
   require => {
     console.log('Callback executed!')
     const movies = require('components/movies').default // esModule
+    console.log('Got movies function~')
     const moviesJSON = require('assets/api/movies.json')
 
-    $(() => {
-      $('#J_Result').html(movies(moviesJSON))
-    })
+    window.onload = function () {
+      document.querySelector('#J_Result').innerHTML = movies(moviesJSON)
+    }
   }
 )

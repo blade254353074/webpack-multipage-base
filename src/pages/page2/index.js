@@ -1,25 +1,14 @@
-console.log('AMD require compoents/movies.js')
+console.log('AMD require components/movies.js')
 
 require(
-  ['components/movies'],
-  (movies) => {
+  ['components/movies', 'assets/api/movies.json'],
+  (movies, moviesJSON) => {
     console.log('Callback executed!')
     movies = movies.default // esModule
+    console.log('Got movies function~')
 
-    $(() => {
-      $.ajax({
-        url: '/v2/movie/in_theaters?count=10',
-        dataType: 'json'
-      })
-        .done(res => {
-          $('#J_Result').html(movies(res))
-        })
-        .fail(err => {
-          console.log(err)
-        })
-        .always(() => {
-          console.log('complete!')
-        })
-    })
+    window.onload = function () {
+      document.querySelector('#J_Result').innerHTML = movies(moviesJSON)
+    }
   }
 )
