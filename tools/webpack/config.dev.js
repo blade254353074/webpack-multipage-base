@@ -88,7 +88,10 @@ const config = {
       loader: 'url?limit=1000&name=assets/imgs/[name].[ext]'
     }, {
       test: /\.hbs$/,
-      loader: "handlebars"
+      loader: "handlebars",
+      query: {
+        partialDirs: [urls.templates]
+      }
     }, {
       test: require.resolve('zepto'),
       loader: 'exports?window.Zepto!script'

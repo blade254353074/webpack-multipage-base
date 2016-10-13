@@ -73,9 +73,12 @@ const config = {
       loader: 'url?limit=1000&name=assets/imgs/[name].[chunkhash:8].[ext]'
     }, {
       test: /\.hbs$/,
-      loader: "handlebars"
+      loader: "handlebars",
+      query: {
+        partialDirs: [urls.templates]
+      }
     }, {
-      test: require.resolve(urls.zepto),
+      test: require.resolve('zepto'),
       loader: 'exports?Zepto!script'
     }]
   },
