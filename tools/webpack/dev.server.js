@@ -18,8 +18,8 @@ const server = new WebpackDevServer(compiler, {
       changeOrigin: true
     }
   },
-  compress: true,
   hot: true,
+  compress: true,
   noInfo: false,
   publicPath: '/',
   stats: {
@@ -34,11 +34,12 @@ server.listen(port, host, function (err) {
     console.error(err)
     return
   }
-  console.log(`
-┌------------------------------------┐
-├ local IP address is: ${    ip    } ┤
-|                                    |
-├ Listening at ${host}:${port}          ┤
-└------------------------------------┘\n`
-  )
+  console.log([
+    '┌------------------------------------┐',
+    `├ local IP address is: ${    ip    } ┤`,
+    '|                                    |',
+    `├ Listening at ${host}:${port}          ┤`,
+    '└------------------------------------┘',
+    ''
+  ].join('\r\n'))
 })

@@ -30,7 +30,7 @@ const config = {
   entry: {
     '[development]': [
       `webpack-dev-server/client?http://${ip}:${port}`, // WebpackDevServer host and port
-      'webpack/hot/dev-server', // 'only' prevents reload on syntax errors
+      'webpack/hot/only-dev-server', // 'only' prevents reload on syntax errors
       'handlebars/dist/handlebars.runtime'
     ],
     vendor: [

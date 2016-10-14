@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development webpack-dashboard -- node tools/webpack/dev.server.js",
-    "start.dev": "NODE_ENV=development node tools/webpack/dev.server.js",
+    "dev": "NODE_ENV=development node tools/webpack/dev.server.js",
     "prebuild": "rimraf ./build",
     "build": "NODE_ENV=production webpack --config ./tools/webpack/config.prod.js --colors --profile",
     "postbuild": "http-server ./build -p 8080",
