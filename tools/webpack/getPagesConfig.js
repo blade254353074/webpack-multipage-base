@@ -48,16 +48,14 @@ function constructEntries (templateFiles) {
 function constructEntryObject (pagesAttr) {
   let entry = {}
   pagesAttr.map(page => {
-    let entryPart
+    const entryPart = {}
     if (NODE_ENV !== 'production') {
       // 'dir/subpage1': [ jspath, htmlpath ]
-      entryPart = {
-        [page.key]: page.js,
-        // 为了让每个页面都跟随源 html 进行热更新，入口要加入源文件路径
-        [page.templateKey]: page.template
-      }
-    } else { // 生产环境
-      entryPart = { [page.key]: page.js }
+      // 为了让每个页面都跟随源 html 进行热更新，入口要加入源文件路径
+      entryPart[page.templateKey] = page.template
+    }
+    if (page.js) {
+      entryPart[page.key] = page.js
     }
     Object.assign(entry, entryPart)
   })
