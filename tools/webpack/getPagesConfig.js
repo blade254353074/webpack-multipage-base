@@ -45,17 +45,30 @@ function constructEntries (templateFiles) {
   return pagesAttr
 }
 
-function constructEntryObject (pagesAttr) {
+function constructEntryObject (pagesAttr, type) {
   let entry = {}
   pagesAttr.map(page => {
-    const entryPart = {}
-    if (NODE_ENV !== 'production') {
+    let entryPart = {}
+    // 当页面数量很多时，bind 形式更好
+    if (type = 'bind') {
       // 'dir/subpage1': [ jspath, htmlpath ]
-      // 为了让每个页面都跟随源 html 进行热更新，入口要加入源文件路径
-      entryPart[page.templateKey] = page.template
-    }
-    if (page.js) {
-      entryPart[page.key] = page.js
+      if (NODE_ENV !== 'production') {
+        entryPart[page.key] = [page.template]
+      }
+      if (page.js) {
+        entryPart[page.key].push(page.js)
+      }
+    } else {
+      // 非 bind 形式可以清楚地看到开发中入口模块的大小
+      if (NODE_ENV !== 'production') {
+        // 'dir/subpage1': jspath,
+        // '<template>-dir/subpage1': htmlpath
+        // 为了让每个页面都跟随源 html 进行热更新，入口要加入源文件路径
+        entryPart[page.templateKey] = page.template
+      }
+      if (page.js) {
+        entryPart[page.key] = page.js
+      }
     }
     Object.assign(entry, entryPart)
   })
