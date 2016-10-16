@@ -85,11 +85,16 @@ const config = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      loader: 'url?limit=1000&name=assets/imgs/[name].[ext]'
+      loader: 'url',
+      query: {
+        limit: 1000,
+        name: 'assets/imgs/[name].[ext]'
+      }
     }, {
       test: /\.hbs$/,
       loader: "handlebars",
       query: {
+        helperDirs: [urls.helpers],
         partialDirs: [urls.templates]
       }
     }, {

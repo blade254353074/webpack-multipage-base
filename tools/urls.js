@@ -19,7 +19,8 @@ const urls = {
   assets: path.resolve(src, 'assets'),
   components: path.resolve(src, 'components'),
   pages: path.resolve(src, 'pages'),
-  templates: path.resolve(src, 'pages/templates')
+  helpers: path.resolve(src, 'handlebars/helpers'),
+  templates: path.resolve(src, 'handlebars/templates')
   /*  */
 }
 
