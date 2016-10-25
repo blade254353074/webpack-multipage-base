@@ -23,9 +23,14 @@ const server = new WebpackDevServer(compiler, {
   noInfo: false,
   publicPath: '/',
   stats: {
+    // Config for minimal console.log mess.
+    assets: false,
     colors: true,
-    displayModules: true,
-    profile: true
+    version: true,
+    hash: true,
+    timings: true,
+    chunks: true,
+    chunkModules: false
   }
 })
 
