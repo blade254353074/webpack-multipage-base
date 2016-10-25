@@ -28,7 +28,7 @@ const pagesConfig = getPagesConfig()
 const config = {
   entry: {
     vendor: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       'zepto',
       'fastclick',
       './src/components/init'

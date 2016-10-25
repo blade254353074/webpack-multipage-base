@@ -48,12 +48,12 @@ function constructEntries (templateFiles) {
 function constructEntryObject (pagesAttr, type) {
   let entry = {}
   pagesAttr.map(page => {
-    let entryPart = {}
+    let entryPart = { [page.key]: [] }
     // 当页面数量很多时，bind 形式更好
     if (type = 'bind') {
       // 'dir/subpage1': [ jspath, htmlpath ]
       if (NODE_ENV !== 'production') {
-        entryPart[page.key] = [page.template]
+        entryPart[page.key].push(page.template)
       }
       if (page.js) {
         entryPart[page.key].push(page.js)

@@ -34,7 +34,7 @@ const config = {
       'handlebars/dist/handlebars.runtime'
     ],
     vendor: [
-      'babel-polyfill/dist/polyfill', // use builded js to boost build process
+      // 'babel-polyfill/dist/polyfill', // use builded js to boost build process
       'zepto',
       'fastclick',
       './src/components/init' // 页面初始化
