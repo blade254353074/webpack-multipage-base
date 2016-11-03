@@ -77,7 +77,8 @@ const config = {
       query: {
         helperDirs: [urls.helpers],
         partialDirs: [urls.templates],
-        inlineRequires: 'assets'
+        inlineRequires: 'assets',
+        runtime: require.resolve('handlebars/dist/handlebars.runtime')
       }
     }, {
       test: require.resolve('zepto'),
