@@ -75,7 +75,9 @@ const config = {
       test: /\.hbs$/,
       loader: "handlebars",
       query: {
-        partialDirs: [urls.templates]
+        helperDirs: [urls.helpers],
+        partialDirs: [urls.templates],
+        inlineRequires: 'assets'
       }
     }, {
       test: require.resolve('zepto'),
