@@ -121,6 +121,7 @@ function getPagesConfig () {
     const pagesAttr = constructEntries(templateFiles)
     const entry = constructEntryObject(pagesAttr) // Object
     const htmls = constructHtmlPluginsConfigArray(pagesAttr) // Array
+    fs.ensureDirSync(urls.temp) // Create .temp dir
 
     return { entry, htmls }
   } catch (err) {
