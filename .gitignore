@@ -45,3 +45,6 @@ jspm_packages
 
 # temp & happypack
 .temp
+
+# yarn
+yarn-error.log
